@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock</title>
+</head>
+<style>
+*	 {
+	margin: none;
+	border: none;
+	 }
+body {
+	
+	font-family: sans-serif;
+}
+p {
+		font-size: 40px;
+		color: white;
+		background-color: rgba(0, 0, 0, 0.775);
+		padding: 40px;
+		text-align: center;
+}
+</style>
+<body>
+<p id="clock"></p>
+
+<script>
+		setInterval(displayclock, 500); 
+function displayclock () {
+	var time = new Date();
+	var hrs = time.getHours();
+	var min = time.getMinutes();
+	var sec = time.getSeconds();
+
+	if (hrs > 12) {
+		hrs = hrs - 12;
+	}
+
+	if (hrs == 0) {
+		hrs = 12;
+	}
+
+	document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<title>MirrOS 1.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/007b767ad0.js" crossorigin="anonymous"></script>
+<style>
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body {
+	background: grey;
+	font-weight: 600;
+	font-family: "Lato", Verdana, Geneva, Tahoma, Roboto, "DejaVu Sans", sans-serif;
+    overflow: hidden;
+}
+.content .img{
+	height: 100%;
+	position: relative;
+}
+.time_wifi {
+	background-color: rgba(0, 0, 0, 0.575);
+	width: 100%;
+	z-index: 900px;
+	transition: 0.5s;
+}
+.time_wifi:hover {
+	transition: 0.5s;
+	height: 80px;
+}
+.content {
+	background: url("");
+	width: 100%;
+	height: 100%;
+}
+.time_wifi p {
+	margin: 0px 0px 10% 10%;
+	font-size: 100%;
+}
+.time_wifi {
+	text-align: left;
+	z-index: 900px;
+	position: absolute;
+	top: 0px;
+	color: white;
+	height: 40px;
+	text-align: right;
+}
+.apps {
+	background-color: rgba(0, 0, 0, 0.575);
+	width: 60px;
+	position: absolute;
+	top: 20%;
+	transition: 0.5s;
+	border-radius: 0 5px 5px 0;
+}
+
+#contex-menu {
+	position: fixed;
+	z-index: 90000000;
+	width: 150px;
+	background-color: rgba(0, 0, 0, 0.575);
+	transform: scale(0);
+	transform-origin: top left;
+	border-radius: 5px;
+}
+#contex-menu.active {
+	transform: scale(1);
+	transition: transform 200ms ease-in-out;
+}
+#contex-menu .item {
+	padding: 8px 10px;
+	font-size: 15px;
+	color: #eee;
+}
+#contex-menu .item:hover {
+	background: #555;
+	cursor: contextmenu;
+}
+#contex-menu .item i {
+	display: inline-block;
+	margin-right: 5px;
+}
+#contex-menu hr {
+	margin: 2px 0px;
+	border-color: #555;
+}
+.apps img {
+	transition: 0.5s;
+	width: 40px;
+	margin: 10px;
+}
+.apps img:hover {
+	transition: 0.5s;
+	width: 80px;
+}
+.calculator {
+	position: relative;
+	display: grid;
+	width: 120px;
+}
+.btn-modal {
+	background: none;
+	border: none;
+	outline: none;
+}
+.hide {
+	transition: 200ms ease-in-out;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	width: 120px;
+	
+}
+.modal.active {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.close-button {
+	color: white;
+	position: absolute;
+
+}
+.close {
+	color: white;
+	background: black;
+	padding: 10px;
+	width: 100%;
+	text-align: right;
+}
+.content-modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+}
+#modal {
+	display: none;
+}
+.
+iframe {
+	width: 280px;
+	height: 444px;
+	border: none;
+	overflow-x:none;
+	overflow-y:none;
+}
+.ifr2 {
+	width: 380px;
+	height: 210px;
+	border: none;
+	overflow-x:none;
+	overflow-y:none;
+	z-index: 300;
+	color: white;
+}
+/* Dropdown Button */
+.dropbtn {
+	position: absolute;
+	right: 60px;
+	top: -10px;
+	background: none;
+	outline: none;
+	border: none;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+/* Close */
+.close{
+    float:right;
+    width:40px;
+    background:rgb(219,0,0);
+    text-align:center;
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: ;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  ;
+  
+  text-decoration: none;
+  display: block;
+}
+
+.wnheader {
+    background-color: rgba(0, 0, 0, 0.575);
+    height: 40px;
+}
+.title {
+    color: white;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid white;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="content">
+<img class="img" src="background.jpg" style="width:100%; height:100%; object-fit:cover">
+	<div class="time_wifi">
+        <div style="top:30">
+        <div style="float:left">
+            <label class="custom-file-upload">
+                <img src="icons/Background_image.png" width="20px">
+            Change background picture<br>
+
+                <input type="file" id="background" onchange="update_image()">
+                </div>
+            </label>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"><a><img src="material%20design%20icons/baseline_headset_white_18dp.png"></a></button>
+  <div id="myDropdown" class="dropdown-content">
+    
+  </div>
+    </div>
+</div>
+
+<p id="clock"></p>
+</div>
+<div class="apps">
+<button id="open_calc" class="btn-modal"><img src="icons/Calculator.png"></img></button>
+<button id="open_modal3" class="btn-modal"><img src="icons/code%20editor.png"></img></button>
+<button id="open_modal3" class="btn-modal"><img src="icons/Music.png"></img></button>
+</div>
+<div id="contex-menu">
+<div class="item">
+<i class="fa fa-cut"></i> Cut
+</div>
+<div class="item">
+<i class="fa fa-clone"></i> Copy
+</div>
+<div class="item">
+<i class="fa fa-paste"></i> Paste
+</div>
+<div class="item">
+<i class="fa fa-trash-o"></i> Delete
+</div>
+<hr>
+<div class="item">
+Open
+</div>
+<div class="item">
+Rename
+</div>
+<div class="item">
+New Folder
+</div>
+<div class="item">
+Help
+</div>
+</div>
+</div>
+<!-- Draggable DIV -->
+<div class="content-modal" id="calc">
+  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+    <div id="calcheader" class="wnheader"><span class="title">Calculator</span><span class="close">&times;</span></div>
+  <iframe width="256px" height="405px" src="Calculator.html">
+</div>
+</div>
+</body>
+
+<div class="content-modal" id="codeapp">
+<div class="modal3">
+<a id="close_modal3" class="close">X</a>
+<iframe class="ifr3" src="file:///G:/Mirror/OS/Mirror%20Bird%20OS/MyCode%20app.html"></iframe>
+</div>
+</div>
+</div>
+<script>
+// Make the DIV element draggable:
+dragElement(document.getElementById("calc"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+// Make the DIV element draggable:
+dragElement(document.getElementById("clock"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+function update_image(){
+    var img = document.querySelector('img');
+    var file = document.querySelector('input[type=file]').files[0];
+    img.src =  window.URL.createObjectURL(file);
+}
+// Get the modal
+var modal = document.getElementById("calc");
+
+// Get the button that opens the modal
+var btn = document.getElementById("open_calc");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  calc.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  calc.style.display = "none";
+}
+
+	setInterval(displayclock, 500);
+function displayclock () {
+	var time = new Date();
+	var hrs = time.getHours();
+	var min = time.getMinutes();
+	var sec = time.getSeconds();
+
+	if (hrs > 12) {
+		hrs = hrs - 12;
+	}
+
+	if (hrs == 0) {
+		hrs = 12;
+	}
+
+	document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
+}
+
+// audio //
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+window.addEventListener("contextmenu", function(event){
+event.preventDefault();
+var contextElement = document.getElementById("contex-menu");
+contextElement.style.top = event.offsetY + "px";
+contextElement.style.left = event.offsetX + "px";
+contextElement.classList.add("active");
+
+});
+window.addEventListener("click", function(){
+document.getElementById("contex-menu").classList.remove("active");
+});
+
+// modal clock //
+var modal = document.querySelector("#modal2");
+
+document.querySelector("#open_modal2").addEventListener("click", function() {
+	modal.style.display = "block";
+});
+
+document.querySelector("#close_moda2").addEventListener("click", function() {
+	modal.style.display = "none";
+});
+// modal calc //
+var modal = document.querySelector("#modal");
+
+document.querySelector("#open_modal").addEventListener("click", function() {
+	modal.style.display = "block";
+});
+
+document.querySelector("#close_modal").addEventListener("click", function() {
+	modal.style.display = "none";
+});
+// modal iCoder //
+var modal = document.querySelector("#modal3");
+
+document.querySelector("#open_modal3").addEventListener("click", function() {
+	modal.style.display = "block";
+});
+
+document.querySelector("#close_modal3").addEventListener("click", function() {
+	modal.style.display = "none";
+});
+
+</script>
+</body>
+</html>
