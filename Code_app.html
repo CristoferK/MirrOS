@@ -114,9 +114,8 @@ body {
 <body>
 <div class="topnav">
 	<div class="buttons">
-<button class="download">Save</button>
-<button class="upload">Upload</button>
-</div>
+<button class="download" onclick="save()">Save</button></div>
+<button class="open" onclick="open()">Open</button></div>
 </div>
 <div class="code-area">
 <textarea id="text" placeholder="HTML code" oninput="showPreview()"></textarea>
@@ -127,6 +126,29 @@ body {
 <iframe id="preview-window"></iframe>
 </div>
 <script type="text/javascript">
+function save() {
+	$(document).ready
+	var filename = prompt("File name", "Harry Potter");
+    	var val = $("textarea").val();
+	document.cookie = fiename+"="+; expires=Fri, 31 Dec 9999 23:59:59 UTC";
+        alert("File saved");
+function open() {
+	var openfile = prompt("File name");
+	function getCookie(cname) {
+  	var name = cname + "=";
+  	var decodedCookie = decodeURIComponent(document.cookie);
+  	var ca = decodedCookie.split(';');
+  	for(var i = 0; i <ca.length; i++) {
+    	var c = ca[i];
+    	while (c.charAt(0) == ' ') {
+      		c = c.substring(1);
+    	}
+    	if (c.indexOf(name) == 0) {
+      		return c.substring(name.length, c.length);
+    	}
+  	}
+  	return "";
+}
 function showPreview() {
 	var htmlCode = document.getElementById("htmlCode").value;
 	var cssCode = "<style>"+document.getElementById("cssCode").value+"</style>";
