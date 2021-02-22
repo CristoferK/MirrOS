@@ -174,7 +174,7 @@ iframe {
   cursor: pointer;
 }
 /* Close */
-.close{
+.closecalc, .closecode{
     float:right;
     width:40px;
     background:rgb(219,0,0);
@@ -261,7 +261,7 @@ input[type="file"] {
 </div>
 <div class="apps">
 <button id="open_calc" class="btn-modal"><img src="icons/Calculator.png"></img></button>
-<button id="open_modal3" class="btn-modal"><img src="icons/code%20editor.png"></img></button>
+<button id="open_codeapp" class="btn-modal"><img src="icons/code%20editor.png"></img></button>
 <button id="open_modal3" class="btn-modal"><img src="icons/Music.png"></img></button>
 </div>
 <div id="contex-menu">
@@ -295,7 +295,7 @@ Help
 <!-- Draggable DIV -->
 <div class="content-modal" id="calc">
   <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-    <div id="calcheader" class="wnheader"><span class="title">Calculator</span><span class="close">&times;</span></div>
+    <div id="calcheader" class="wnheader"><span class="title">Calculator</span><span class="closecalc">&times;</span></div>
   <iframe width="256px" height="405px" src="Calculator.html">
 </div>
 </div>
@@ -303,14 +303,15 @@ Help
 
 <div class="content-modal" id="codeapp">
 <div class="modal3">
-<a id="close_modal3" class="close">X</a>
-<iframe class="ifr3" src="file:///G:/Mirror/OS/Mirror%20Bird%20OS/MyCode%20app.html"></iframe>
-</div>
+  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+    <div id="codeappheader" class="wnheader"><span class="title">Code Editor</span><span class="closecode">&times;</span></div>
+    <iframe class="ifr3" src="file:///G:/Mirror/OS/Mirror%20Bird%20OS/MyCode%20app.html" style="resize:both"></iframe>
 </div>
 </div>
 <script>
 // Make the DIV element draggable:
 dragElement(document.getElementById("calc"));
+dragElement(document.getElementById("codeapp"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -352,49 +353,7 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-// Make the DIV element draggable:
-dragElement(document.getElementById("clock"));
 
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
 function update_image(){
     var img = document.querySelector('img');
     var file = document.querySelector('input[type=file]').files[0];
@@ -419,20 +378,33 @@ span.onclick = function() {
   calc.style.display = "none";
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+// Get the modal
+var modal = document.getElementById("codeapp");
+
+// Get the button that opens the modal
+var btn = document.getElementById("open_codeapp");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("closecode")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  codeapp.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  codeapp.style.display = "none";
+}
+
 	setInterval(displayclock, 500);
 function displayclock () {
 	var time = new Date();
 	var hrs = time.getHours();
 	var min = time.getMinutes();
 	var sec = time.getSeconds();
-
-	if (hrs > 12) {
-		hrs = hrs - 12;
-	}
-
-	if (hrs == 0) {
-		hrs = 12;
-	}
 
 	document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
 }
