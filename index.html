@@ -295,7 +295,7 @@ Help
 <!-- Draggable DIV -->
 <div class="content-modal" id="calc">
   <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-    <div id="calcheader" class="wnheader"><span class="title">Calculator</span><span class="closecalc">&times;</span></div>
+    <div id="calcheader" class="wnheader"><span class="title">Calculator</span><span class="closecalc" onclick="closecalc()">&times;</span></div>
   <iframe width="256px" height="405px" src="Calculator.html">
 </div>
 </div>
@@ -367,7 +367,7 @@ function open_calc() {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+function close_calc() {
   calc.style.display = "none";
 }
 
