@@ -128,9 +128,9 @@ body {
 <script type="text/javascript">
 function save() {
 	$(document).ready
-	var filename = prompt("File name", "Harry Potter");
-    	var val = $("textarea").val();
-	document.cookie = fiename+"="+; expires=Fri, 31 Dec 9999 23:59:59 UTC";
+	var filename = prompt("File name (no spaces)", "untitled");
+	var htmlCode = document.getElementById("htmlCode").value;
+	document.cookie = fiename+"="+htmlCode; expires=Fri, 31 Dec 9999 23:59:59 UTC";
         alert("File saved");
 function open() {
 	var openfile = prompt("File name");
