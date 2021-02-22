@@ -260,8 +260,8 @@ input[type="file"] {
 <p id="clock"></p>
 </div>
 <div class="apps">
-<button id="open_calc" class="btn-modal"><img src="icons/Calculator.png"></img></button>
-<button id="open_codeapp" class="btn-modal"><img src="icons/code%20editor.png"></img></button>
+<button id="open_calc" onclick="open_calc()" class="btn-modal"><img src="icons/Calculator.png"></img></button>
+<button id="open_codeapp" onclick="open_codeapp()" class="btn-modal"><img src="icons/code%20editor.png"></img></button>
 <button id="open_modal3" class="btn-modal"><img src="icons/Music.png"></img></button>
 </div>
 <div id="contex-menu">
@@ -358,17 +358,9 @@ function update_image(){
     var file = document.querySelector('input[type=file]').files[0];
     img.src =  window.URL.createObjectURL(file);
 }
-// Get the modal
-var calc = document.getElementById("calc");
-
-// Get the button that opens the modal
-var btn = document.getElementById("open_calc");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
+function open_calc() {
   calc.style.display = "block";
 }
 
@@ -378,18 +370,9 @@ span.onclick = function() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-// Get the modal
-var codeapp = document.getElementById("codeapp");
-
-// Get the button that opens the modal
-var btn = document.getElementById("open_codeapp");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("closecode")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
+function open_clock() {
   codeapp.style.display = "block";
 }
 
