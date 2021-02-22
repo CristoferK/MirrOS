@@ -309,7 +309,15 @@ Help
 </div>
 </body>
 <script>
+setInterval(displayclock, 500);
+function displayclock () {
+	var time = new Date();
+	var hrs = time.getHours();
+	var min = time.getMinutes();
+	var sec = time.getSeconds();
 
+	document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
+}
 // Make the DIV element draggable:
 dragElement(document.getElementById("calc"));
 dragElement(document.getElementById("codeapp"));
@@ -379,19 +387,11 @@ function open_codeapp() {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+function close_codeapp() {
   codeapp.style.display = "none";
 }
 
-	setInterval(displayclock, 500);
-function displayclock () {
-	var time = new Date();
-	var hrs = time.getHours();
-	var min = time.getMinutes();
-	var sec = time.getSeconds();
 
-	document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
-}
 
 // audio //
 /* When the user clicks on the button,
